@@ -38,4 +38,20 @@ public class Venue {
     public boolean canAccommodate(int numberOfPeople) {
         return capacity == 0 || numberOfPeople <= capacity;
     }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public void setVenueType(int venueType) {
+        this.venueType = venueType;
+    }
 }

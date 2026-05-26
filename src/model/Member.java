@@ -1,6 +1,5 @@
-package classes;
+package model;
 
-import java.time.LocalDate;
 import java.util.TreeSet;
 
 public class Member extends User {

@@ -1,4 +1,4 @@
-package classes;
+package model;
 
 public class Manager extends User {
     public Manager (int id, String name, String username, String email, String password) {

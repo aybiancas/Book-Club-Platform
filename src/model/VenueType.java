@@ -1,4 +1,4 @@
-package enums;
+package model;
 
 public enum VenueType {
     Physical(1),

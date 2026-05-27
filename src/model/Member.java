@@ -1,17 +1,25 @@
 package model;
 
-import java.util.TreeSet;
+import java.util.*;
 
 public class Member extends User {
 
     private final TreeSet<Book> readingList;
+    private final List<String> attendedMeetings; // the ids of the meetings
+    private final List<Notification> notifications;
 
     public Member (int id, String name, String username, String email, String password) {
         super (id, name, username, email, password);
+        this.readingList = new TreeSet<>();
+        this.attendedMeetings = new ArrayList<>();
+        this.notifications = new ArrayList<>();
     }
 
     public Member (String name, String username, String email, String password) {
         super (name, username, email, password);
+        this.readingList = new TreeSet<>();
+        this.attendedMeetings = new ArrayList<>();
+        this.notifications = new ArrayList<>();
     }
 
     @Override
@@ -36,5 +44,44 @@ public class Member extends User {
 
     public boolean isInReadingList(Book book) {
         return readingList.contains(book);
+    }
+
+    public SortedSet<Book> getReadingList() {
+        return Collections.unmodifiableSortedSet(readingList);
+    }
+
+    public int readingListSize() {
+        return readingList.size();
+    }
+
+    public void attendMeeting(String meetingId) {
+        if (!attendedMeetings.contains(meetingId)) {
+            attendedMeetings.add(meetingId);
+        }
+    }
+    public void leaveMeeting(String meetingId) {
+        attendedMeetings.remove(meetingId);
+    }
+
+    public List<String> getAttendedMeetingIds() {
+        return new ArrayList<>(attendedMeetings);
+    }
+
+    public void addNotification(Notification n) {
+        notifications.add(n);
+    }
+
+    public void markAllNotificationsRead() {
+        notifications.forEach(Notification::markAsRead);
+    }
+
+    public List<Notification> getNotifications() {
+        return new ArrayList<>(notifications);
+    }
+
+    public List<Notification> getUnreadNotifications() {
+        List<Notification> unread = new ArrayList<>();
+        for (Notification n : notifications) if (!n.isRead()) unread.add(n);
+        return unread;
     }
 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VenueController" style="-fx-background-color: #f0f2f5; -fx-padding: 14;">
+    <top>
+        <MenuBar>
+            <Menu text="View">
+                <MenuItem text="↻  Refresh" onAction="#handleRefresh"/>
+            </Menu>
+            <Menu fx:id="managerMenu" text="Manager" visible="false">
+                <MenuItem text="+  Add Venue…" onAction="#showAddDialog"/>
+                <MenuItem text="✏️  Edit Selected" onAction="#showEditDialog"/>
+                <MenuItem text="-  Delete Selected" onAction="#handleDelete"/>
+            </Menu>
+        </MenuBar>
+    </top>
+
+    <center>
+        <HBox spacing="14">
+            <TableView fx:id="venueTable" HBox.hgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colName" text="Name" prefWidth="200"/>
+                    <TableColumn fx:id="colType" text="Type" prefWidth="90"/>
+                    <TableColumn fx:id="colAddress" text="Address" prefWidth="240"/>
+                    <TableColumn fx:id="colCapacity" text="Capacity" prefWidth="90"/>
+                </columns>
+            </TableView>
+
+            <VBox spacing="6" prefWidth="240" style="-fx-background-color: white; -fx-background-radius: 8;
+                         -fx-border-color: #e2e8f0; -fx-border-radius: 8;
+                         -fx-border-width: 1; -fx-padding: 14;">
+                <Label text="Venue Details" style="-fx-font-size: 14; -fx-font-weight: bold;"/>
+                <GridPane fx:id="detailGrid" hgap="8" vgap="6"/>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

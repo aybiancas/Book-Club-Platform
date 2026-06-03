@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox xmlns:fx="http://javafx.com/fxml" fx:controller="gui.LoginController" prefHeight="460" prefWidth="760">
+    <VBox alignment="CENTER" prefWidth="220"
+          style="-fx-background-color: #1e293b; -fx-padding: 50 40 50 40; -fx-spacing: 12;">
+        <Label text="📖" style="-fx-font-size: 52;"/>
+        <Label text="Book Club" style="-fx-text-fill: white; -fx-font-size: 26; -fx-font-weight: bold;"/>
+        <Label text="Read and connect" style="-fx-text-fill: #64748b; -fx-font-size: 13;"/>
+    </VBox>
+
+    <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS" style="-fx-background-color: white; -fx-padding: 40 50 40 50;">
+        <TabPane tabClosingPolicy="UNAVAILABLE">
+            <Tab text="Sign In" closable="false">
+                <VBox spacing="12" style="-fx-padding: 24 0 12 0;">
+                    <Label text="Welcome back!" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+                    <TextField fx:id="usernameField" promptText="Username"/>
+                    <PasswordField fx:id="passwordField" promptText="Password"/>
+                    <Button fx:id="loginBtn" text="Sign In" maxWidth="Infinity" defaultButton="true" onAction="#handleLogin"/>
+                    <Label fx:id="errorLabel" text=" " style="-fx-text-fill: #ef4444; -fx-font-size: 12;"/>
+                    <Label text="Connection log" style="-fx-text-fill: #94a3b8; -fx-font-size: 11; -fx-font-weight: bold;"/>
+                    <ListView fx:id="logListView" prefHeight="90"/>
+                </VBox>
+            </Tab>
+
+            <Tab text="Register" closable="false">
+                <VBox spacing="12" style="-fx-padding: 24 0 12 0;">
+                    <Label text="Create an account" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+                    <GridPane hgap="10" vgap="10">
+                        <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                        <TextField fx:id="regNameF" promptText="Full name" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                        <Label text="Username:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                        <TextField fx:id="regUsernameF" promptText="Username" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                        <Label text="Email:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                        <TextField fx:id="regEmailF" promptText="Email" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                        <Label text="Password:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                        <PasswordField fx:id="regPasswordF" promptText="Password" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                        <Label text="Confirm:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                        <PasswordField fx:id="regConfirmF" promptText="Confirm password" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                    </GridPane>
+                    <Button text="Create Account" maxWidth="Infinity" onAction="#handleRegister"/>
+                    <Label fx:id="regStatus" text=" " style="-fx-font-size: 12;"/>
+                </VBox>
+            </Tab>
+        </TabPane>
+    </VBox>
+</HBox>

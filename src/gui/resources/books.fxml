@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.BookController" style="-fx-background-color: #f0f2f5; -fx-padding: 14;">
+    <top>
+        <VBox>
+            <MenuBar>
+                <Menu text="Actions">
+                    <MenuItem text="+  Add to Reading List" onAction="#handleAddToList"/>
+                    <MenuItem text="-  Remove from Reading List" onAction="#handleRemoveFromList"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="↻  Refresh" onAction="#handleRefresh"/>
+                </Menu>
+                <Menu fx:id="managerMenu" text="Manager" visible="false">
+                    <MenuItem text="+  Add New Book" onAction="#showAddBookDialog"/>
+                    <MenuItem text="-  Remove Selected Book" onAction="#handleRemoveBook"/>
+                </Menu>
+            </MenuBar>
+
+            <!-- search -->
+            <HBox spacing="8" alignment="CENTER_LEFT"
+                  style="-fx-padding: 8 0 8 0;">
+                <TextField fx:id="searchField" promptText="Search by title or author..." prefWidth="280" onAction="#handleSearch"/>
+                <Button text="Search" onAction="#handleSearch"/>
+                <Button text="Show All" onAction="#handleClear"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <HBox spacing="14">
+            <!-- book table -->
+            <TableView fx:id="bookTable" HBox.hgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colTitle" text="Title" prefWidth="260"/>
+                    <TableColumn fx:id="colAuthor" text="Author" prefWidth="160"/>
+                    <TableColumn fx:id="colCat" text="Category" prefWidth="110"/>
+                    <TableColumn fx:id="colPages" text="Pages" prefWidth="60"/>
+                    <TableColumn fx:id="colIsbn" text="ISBN" prefWidth="150"/>
+                </columns>
+            </TableView>
+
+            <!-- details panel -->
+            <VBox fx:id="detailPanel" spacing="8" prefWidth="220" style="-fx-background-color: white; -fx-background-radius: 8;
+                         -fx-border-color: #e2e8f0; -fx-border-radius: 8;
+                         -fx-border-width: 1; -fx-padding: 14;">
+                <Label fx:id="detailTitle" text="Select a book" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-wrap-text: true;"/>
+                <Label fx:id="detailBody"  style="-fx-text-fill: #94a3b8; -fx-wrap-text: true;"/>
+                <Button text="+  Add to Reading List" maxWidth="Infinity" onAction="#handleAddToList"/>
+                <Button text="-  Remove from Reading List" maxWidth="Infinity" onAction="#handleRemoveFromList"/>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

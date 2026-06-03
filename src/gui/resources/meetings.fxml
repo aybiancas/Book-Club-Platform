@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MeetingController" style="-fx-background-color: #f0f2f5; -fx-padding: 14;">
+    <top>
+        <MenuBar>
+            <Menu text="View">
+                <MenuItem text="⏲  Upcoming Meetings" onAction="#showUpcoming"/>
+                <MenuItem text="☰  All Meetings" onAction="#showAll"/>
+                <SeparatorMenuItem/>
+                <MenuItem text="↻  Refresh" onAction="#showUpcoming"/>
+            </Menu>
+            <Menu text="Actions">
+                <MenuItem text="✓  Attend Selected" onAction="#handleAttend"/>
+                <Menu fx:id="managerActionsMenu" text="Manager" visible="false">
+                    <MenuItem text="+  Schedule New Meeting…" onAction="#showScheduleDialog"/>
+                    <MenuItem text="⏲  Reschedule Selected…" onAction="#showRescheduleDialog"/>
+                    <MenuItem text="×  Cancel Selected" onAction="#handleCancel"/>
+                    <MenuItem text="✎  Add / Edit Notes" onAction="#showNotesDialog"/>
+                </Menu>
+            </Menu>
+        </MenuBar>
+    </top>
+
+    <center>
+        <HBox spacing="14">
+            <TableView fx:id="meetingTable" HBox.hgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colDate" text="Date / Time" prefWidth="130"/>
+                    <TableColumn fx:id="colTitle" text="Title" prefWidth="200"/>
+                    <TableColumn fx:id="colVenue" text="Venue" prefWidth="140"/>
+                    <TableColumn fx:id="colBook" text="Book" prefWidth="150"/>
+                    <TableColumn fx:id="colAttending" text="Attendees" prefWidth="80"/>
+                    <TableColumn fx:id="colStatus" text="Status" prefWidth="100"/>
+                </columns>
+            </TableView>
+
+            <VBox spacing="6" prefWidth="280" style="-fx-background-color: white; -fx-background-radius: 8;
+                         -fx-border-color: #e2e8f0; -fx-border-radius: 8;
+                         -fx-border-width: 1; -fx-padding: 14;">
+                <Label text="Meeting Details" style="-fx-font-size: 14; -fx-font-weight: bold;"/>
+                <GridPane fx:id="detailGrid" hgap="8" vgap="6"/>
+                <Separator/>
+                <Label text="Notes:" style="-fx-text-fill: #94a3b8;"/>
+                <Label fx:id="notesLabel" style="-fx-text-fill: #94a3b8; -fx-wrap-text: true;"/>
+                <Button text="✓  Attend this Meeting" maxWidth="Infinity" onAction="#handleAttend"
+                        style="-fx-background-color: #3b82f6; -fx-text-fill: white;
+                               -fx-font-weight: bold; -fx-background-radius: 7;
+                               -fx-padding: 8 0 8 0; -fx-cursor: hand;"/>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

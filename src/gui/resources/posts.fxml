@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.PostController" style="-fx-background-color: #f0f2f5; -fx-padding: 14;">
+    <top>
+        <MenuBar>
+            <Menu text="View">
+                <MenuItem text="↻  Refresh" onAction="#handleRefresh"/>
+            </Menu>
+            <Menu fx:id="managerMenu" text="Manager" visible="false">
+                <MenuItem text="✒︎  New Post" onAction="#showNewPostDialog"/>
+                <MenuItem text="✎  Edit Selected" onAction="#showEditPostDialog"/>
+                <MenuItem text="×  Delete Selected" onAction="#handleDelete"/>
+            </Menu>
+        </MenuBar>
+    </top>
+
+    <center>
+        <HBox spacing="14">
+            <TableView fx:id="postTable" prefWidth="540">
+                <columns>
+                    <TableColumn fx:id="colTitle" text="Title" prefWidth="300"/>
+                    <TableColumn fx:id="colAuthor" text="Author" prefWidth="130"/>
+                    <TableColumn fx:id="colPublished" text="Status" prefWidth="110"/>
+                </columns>
+            </TableView>
+
+            <VBox spacing="10" HBox.hgrow="ALWAYS">
+                <Label fx:id="postTitleLabel" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-wrap-text: true;"/>
+                <Label fx:id="postAuthorLabel" style="-fx-text-fill: #94a3b8;"/>
+                <TextArea fx:id="bodyArea" editable="false" wrapText="true" prefHeight="180" promptText="Select a post to read it."/>
+
+                <VBox spacing="6" VBox.vgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 8;
+                             -fx-border-color: #e2e8f0; -fx-border-radius: 8;
+                             -fx-border-width: 1; -fx-padding: 10;">
+                    <Label text="💬  Comments" style="-fx-font-weight: bold; -fx-font-size: 13;"/>
+                    <ListView fx:id="commentList" prefHeight="140" VBox.vgrow="ALWAYS"/>
+                    <HBox spacing="8">
+                        <TextField fx:id="commentField" HBox.hgrow="ALWAYS" promptText="Write a comment…" onAction="#handlePostComment"/>
+                        <Button text="Post" onAction="#handlePostComment"/>
+                    </HBox>
+                </VBox>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

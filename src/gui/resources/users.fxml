@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.UserManagementController" style="-fx-background-color: #f0f2f5; -fx-padding: 14;">
+    <top>
+        <VBox>
+            <MenuBar>
+                <Menu text="Actions">
+                    <MenuItem text="↻  Refresh" onAction="#handleRefresh"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="+  Register New Manager…" onAction="#showRegisterDialog"/>
+                    <MenuItem text="-  Remove Selected User" onAction="#handleRemove"/>
+                </Menu>
+            </MenuBar>
+            <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 6 0 6 0;">
+                <Label text="Show:"/>
+                <ComboBox fx:id="roleFilter" onAction="#handleFilterChange"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <HBox spacing="14">
+            <TableView fx:id="userTable" HBox.hgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="40"/>
+                    <TableColumn fx:id="colName" text="Name" prefWidth="150"/>
+                    <TableColumn fx:id="colUser" text="Username" prefWidth="110"/>
+                    <TableColumn fx:id="colEmail" text="Email" prefWidth="190"/>
+                    <TableColumn fx:id="colRole" text="Role" prefWidth="80"/>
+                    <TableColumn fx:id="colJoin" text="Joined" prefWidth="100"/>
+                </columns>
+            </TableView>
+
+            <VBox spacing="8" prefWidth="240" style="-fx-background-color: white; -fx-background-radius: 8;
+                         -fx-border-color: #e2e8f0; -fx-border-radius: 8;
+                         -fx-border-width: 1; -fx-padding: 14;">
+                <Label text="User Profile" style="-fx-font-size: 14; -fx-font-weight: bold;"/>
+                <GridPane fx:id="detailGrid" hgap="8" vgap="6"/>
+                <Separator/>
+                <Label text="Summary:" style="-fx-text-fill: #94a3b8;"/>
+                <Label fx:id="summaryLabel" style="-fx-text-fill: #94a3b8; -fx-wrap-text: true;"/>
+                <Button text="-  Remove This User" maxWidth="Infinity" onAction="#handleRemove"
+                        style="-fx-background-color: #ef4444; -fx-text-fill: white;
+                               -fx-font-weight: bold; -fx-background-radius: 7;
+                               -fx-padding: 8 0 8 0; -fx-cursor: hand;"/>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

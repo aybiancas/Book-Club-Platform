@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DashboardController" style="-fx-background-color: #f0f2f5; -fx-padding: 16;">
+    <top>
+        <VBox style="-fx-background-color: white; -fx-background-radius: 8;
+                     -fx-border-color: #3b82f6; -fx-border-width: 0 0 0 4;
+                     -fx-border-radius: 8; -fx-padding: 14 18 14 18;">
+            <BorderPane.margin>
+                <Insets top="0" right="0" bottom="14" left="0"/>
+            </BorderPane.margin>
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <Label fx:id="avatarLabel" style="-fx-font-size: 36;"/>
+                <VBox spacing="2" HBox.hgrow="ALWAYS">
+                    <Label fx:id="nameLabel" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+                    <Label fx:id="roleLabel" style="-fx-text-fill: #94a3b8;"/>
+                    <Label fx:id="summaryLabel" style="-fx-text-fill: #94a3b8;"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="logoutBtn" text="Log Out" onAction="#handleLogout"
+                        style="-fx-background-color: transparent; -fx-text-fill: #ef4444;
+                               -fx-border-color: #ef4444; -fx-border-width: 1;
+                               -fx-background-radius: 7; -fx-border-radius: 7;
+                               -fx-padding: 6 16 6 16; -fx-font-weight: bold; -fx-cursor: hand;"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="12">
+            <HBox fx:id="statsRow" spacing="12"/>
+            <HBox spacing="12" VBox.vgrow="ALWAYS">
+                <VBox spacing="8" HBox.hgrow="ALWAYS"
+                      style="-fx-background-color: white; -fx-background-radius: 8;
+                             -fx-border-color: #e2e8f0; -fx-border-radius: 8;
+                             -fx-border-width: 1; -fx-padding: 14;">
+                    <Label text="⧖  Upcoming Meetings" style="-fx-font-weight: bold; -fx-font-size: 13;"/>
+                    <ListView fx:id="meetingsList" VBox.vgrow="ALWAYS"/>
+                </VBox>
+
+                <VBox spacing="8" HBox.hgrow="ALWAYS"
+                      style="-fx-background-color: white; -fx-background-radius: 8;
+                             -fx-border-color: #e2e8f0; -fx-border-radius: 8;
+                             -fx-border-width: 1; -fx-padding: 14;">
+                    <Label text="☰  Recent Posts" style="-fx-font-weight: bold; -fx-font-size: 13;"/>
+                    <ListView fx:id="postsList" VBox.vgrow="ALWAYS"/>
+                </VBox>
+            </HBox>
+
+            <HBox fx:id="memberBottomRow" spacing="12" managed="false" visible="false">
+                <VBox spacing="8" HBox.hgrow="ALWAYS"
+                      style="-fx-background-color: white; -fx-background-radius: 8;
+                             -fx-border-color: #e2e8f0; -fx-border-radius: 8;
+                             -fx-border-width: 1; -fx-padding: 14;">
+                    <Label text="☰  My Reading List " style="-fx-font-weight: bold; -fx-font-size: 13;"/>
+                    <ListView fx:id="readingList" prefHeight="130"/>
+                </VBox>
+
+                <VBox spacing="8" HBox.hgrow="ALWAYS"
+                      style="-fx-background-color: white; -fx-background-radius: 8;
+                             -fx-border-color: #e2e8f0; -fx-border-radius: 8;
+                             -fx-border-width: 1; -fx-padding: 14;">
+                    <HBox spacing="8" alignment="CENTER_LEFT">
+                        <Label text="●  Notifications" style="-fx-font-weight: bold; -fx-font-size: 13;"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="unreadBadge"/>
+                        <Button fx:id="markAllBtn" text="Mark all as read" onAction="#handleMarkAllRead"/>
+                    </HBox>
+                    <ListView fx:id="notifList" prefHeight="130"/>
+                </VBox>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

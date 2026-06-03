@@ -6,10 +6,10 @@ public class Category {
     private String categoryId, name, description, colorHex;
 
     public Category (String categoryId, String name, String description, String colorHex) {
-        this.categoryId  = categoryId;
-        this.name        = name;
+        this.categoryId = categoryId;
+        this.name = name;
         this.description = description;
-        this.colorHex    = colorHex;
+        this.colorHex = colorHex;
     }
 
     public String getCategoryId() {
@@ -42,8 +42,12 @@ public class Category {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Category)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Category)) {
+            return false;
+        }
         return Objects.equals(categoryId, ((Category) o).categoryId);
     }
 

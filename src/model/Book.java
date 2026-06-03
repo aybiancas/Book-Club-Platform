@@ -61,8 +61,12 @@ public class Book implements Comparable<Book> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Book)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Book)) {
+            return false;
+        }
         return Objects.equals(isbn, ((Book) o).isbn);
     }
 
@@ -71,7 +75,7 @@ public class Book implements Comparable<Book> {
 
     @Override
     public String toString() {
-        return String.format("\"%s\" by %s (%d)", title, author);
+        return String.format("\"%s\" by %s (%d)", title, author, noOfPages);
     }
 
 }

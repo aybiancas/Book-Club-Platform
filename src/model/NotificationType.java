@@ -1,4 +1,4 @@
-package enums;
+package model;
 
 public enum NotificationType {
     NEW_MEETING,

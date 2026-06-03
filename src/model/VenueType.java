@@ -6,7 +6,7 @@ public enum VenueType {
 
     private final int value;
 
-    private VenueType(int value) {
+    VenueType(int value) {
         this.value = value;
     }
 

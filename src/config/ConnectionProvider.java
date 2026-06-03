@@ -3,12 +3,20 @@ package config;
 import java.sql.*;
 
 public class ConnectionProvider {
-    private static String url = "jdbc:posgresql://localhost:5432/clubproject"; // adauga numele BD
-    private static String username = "localadmin";
-    private static String password = "localuserpass";
-    private static ConnectionProvider instance;
+    private static final String url = "jdbc:postgresql://localhost:5432/clubproject"; // adauga numele BD
+    private static final String username = "localadmin";
+    private static final String password = "localuserpass";
+    private static volatile ConnectionProvider instance;
+    private Connection connection;
 
     private ConnectionProvider() {
+        try {
+            this.connection = DriverManager.getConnection(url, username, password);
+        }
+        catch(SQLException e) {
+            throw new RuntimeException("Cannot connect to database: " + e.getMessage(), e);
+
+        }
     }
 
     public static String getUrl() {
@@ -25,13 +33,33 @@ public class ConnectionProvider {
 
     public static ConnectionProvider getInstance() {
         if (instance == null) {
-            instance = new ConnectionProvider();
-//            try {
-//                return DriverManager.getConnection(url, username, password);
-//            } catch (SQLException e) {
-//                throw new RuntimeException(e);
-//            }
+            synchronized (ConnectionProvider.class) {
+                if (instance == null) {
+                    instance = new ConnectionProvider();
+                }
+            }
         }
         return instance;
+    }
+
+    public Connection getConnection() {
+        try {
+            if (connection == null || connection.isClosed()) {
+                connection = DriverManager.getConnection(url, username, password);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Cannot reopen to database: " + e.getMessage(), e);
+        }
+        return connection;
+    }
+
+    public void close() {
+        try {
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        } catch(SQLException e) {
+            System.out.println("Error closing connection: " + e.getMessage());
+        }
     }
 }

@@ -13,6 +13,8 @@ public abstract class User {
         this.name = name;
         this.username = username;
         this.email = email;
+        this.password = password;
+        this.joinDate = LocalDate.now();
     }
 
     public User (String name, String username, String email, String password) {
@@ -20,6 +22,7 @@ public abstract class User {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.joinDate = LocalDate.now();
     }
 
     public int getId() {
@@ -64,7 +67,7 @@ public abstract class User {
 
     public abstract String getRole();
 
-//    public abstract String getProfileSummary();
+    public abstract String getProfileSummary();
 
     public boolean authenticate(String pw) {
         return this.password.equals(pw);
@@ -72,13 +75,19 @@ public abstract class User {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof User)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof User)) {
+            return false;
+        }
         return Objects.equals(id, ((User) o).id);
     }
 
     @Override
-    public int hashCode() { return Objects.hash(id); }
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
     @Override
     public String toString() {
